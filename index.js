@@ -27,7 +27,9 @@ async function run() {
             res.send(result);
         })
         app.get('/allContact', async (req, res) => {
-            const contacts = await contactCollection.find().toArray();
+            const email = req.query.email;
+            const query = { email: email }
+            const contacts = await contactCollection.find(query).toArray();
             res.send(contacts);
         })
     }
